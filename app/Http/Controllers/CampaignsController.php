@@ -57,7 +57,7 @@ class CampaignsController extends Controller
 
         //refers organizerid to his campaign
         $organizer_id= auth()->user('organizer')->organizerid;
-        $campaign->organizationid = dd(Organization::where('organizerid',$organizer_id)->value('organizationid'));
+        $campaign->organizationid = Organization::where('organizerid',$organizer_id)->value('organizationid');
 
         //I fucked up this line.
         $campaign->emailid = rand();
