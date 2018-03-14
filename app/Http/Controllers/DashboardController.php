@@ -32,7 +32,7 @@ class DashboardController extends Controller
         $data = [
             'organizer_co' => $organizer_co=auth()->user('organizer'),
             'organizer_name' =>$organizer_co -> name,
-            'your_organizations' =>Organization::select ('organization.name')-> join('organizer','organizer.organizerid', '=','organization.organizerid')->where('organizer.organizerid',$organizer_co -> organizerid)->get(),
+            'your_organizations' =>Organization::select ('organization.name','organization.organizationid')-> join('organizer','organizer.organizerid', '=','organization.organizerid')->where('organizer.organizerid',$organizer_co -> organizerid)->get(),
             'your_campaigns' => Campaigns::select ('campaign.name')-> join('organization','organization.organizationid', '=','campaign.organizationid')->join('organizer','organizer.organizerid','=','organization.organizerid')->where('organizer.organizerid',$organizer_co -> organizerid)->get(),
 
 

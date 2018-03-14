@@ -3,7 +3,7 @@
 @section('content')
 
     <?php
-           // dd($data['your_organizations']);
+           //dd($data['your_organizations'][0]);
     ?>
 <div class="container">
     <div class="row justify-content-center">
@@ -19,7 +19,7 @@
                     @endif
                     <h2>Your organizations</h2>
                         @foreach($data['your_organizations'] as $item)
-                            <p>{{$item->name}}</p>
+                            <p><a href="/organizations/{{$item->organizationid}}">{{$item->name}}</a></p>
                         @endforeach
                         <a href="/organizations/create" class="btn btn-primary">Create Organization</a>
                     <h2>Your campaigns</h2>
