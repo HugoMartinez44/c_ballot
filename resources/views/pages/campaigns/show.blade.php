@@ -1,10 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="/campaigns" class="btn btn-primary">Go Back</a>
+    <br>
+    <a href="/campaigns">Go Back</a>
     <h1>{{$campaign->name}}</h1>
     <p>Will be started at : {{$campaign->startdate}}</p>
     <p>Will be ended at : {{$campaign->enddate}}</p>
+    <div class="col-md-12">
+    <button class="btn btn-success">Send emails</button>
+    </div>
     <hr>
     <a href="/campaigns/{{$campaign->campaignid}}/edit" class="btn btn-primary">Edit</a>
 

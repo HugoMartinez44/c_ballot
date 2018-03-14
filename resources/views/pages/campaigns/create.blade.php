@@ -21,7 +21,7 @@
 
     <div class="form-group">
         {{Form::label('organization', 'Organization')}}
-        {!! Form::select('name', $organizations, '', ['class' => 'form-control']) !!}
+        {!! Form::select('organizationid', $organizations, '', ['class' => 'form-control']) !!}
     </div>
 
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
