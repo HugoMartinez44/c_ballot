@@ -7,7 +7,19 @@
     <p>Will be started at : {{$campaign->startdate}}</p>
     <p>Will be ended at : {{$campaign->enddate}}</p>
     <div class="col-md-12">
-    <button class="btn btn-success">Send emails</button>
+
+    <form action="{{ route('sendmail') }}" method="post">
+    <div class="form-group">
+        {{Form::label('Email')}}
+        {{Form::textarea('email_body', 'email body', ['class' => 'form-control'])}}
+    </div> <!-- placeholder : always in second params -->
+    <div class="form-group">
+        {{Form::label('Adresses')}}
+        {{Form::text('adresses', 'a@b.fr', ['class' => 'form-control'])}}
+    </div>
+    <button type="submit" class="btn btn-success">Send emails</button>
+    {{ csrf_field() }}
+    </form>
     </div>
     <hr>
     <a href="/campaigns/{{$campaign->campaignid}}/edit" class="btn btn-primary">Edit</a>

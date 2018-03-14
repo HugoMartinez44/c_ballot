@@ -10,6 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Mails route
+Route::post('/sendmail', function (\Illuminate\Http\Request $request, \Illuminate\Mail\Mailer $mailer) {
+    $mailer
+    ->to($request->input('adresses'))
+    ->send(new \App\Mail\MyMail($request->input('email_body')));
+    return redirect()->back();
+})->name('sendmail');
+//
 
 Route::get('/', 'PagesController@index');
 

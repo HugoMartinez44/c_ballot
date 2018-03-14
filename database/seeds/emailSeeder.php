@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Database\Seeder;
-class DatabaseSeeder extends Seeder
+class emailSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -9,6 +9,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(emailSeeder::class);
+        factory(App\Emails::class, 12)->create();
     }
 }
