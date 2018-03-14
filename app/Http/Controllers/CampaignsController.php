@@ -46,7 +46,7 @@ class CampaignsController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'startdate' => 'required',
-            'enddate' => 'required' //Those are rules here
+            'enddate' => 'required' //rules here
         ]);
 
         //Create campaign
@@ -55,8 +55,9 @@ class CampaignsController extends Controller
         $campaign->startdate = $request->input('startdate');
         $campaign->enddate = $request->input('enddate');
 
-        //refers organizer id to his campaign
-        $campaign->organizationid = rand();
+        //refers organizerid to his campaign
+        $organizer_id= auth()->user('organizer')->organizerid;
+        $campaign->organizationid = dd(Organization::where('organizerid',$organizer_id)->value('organizationid'));
 
         //I fucked up this line.
         $campaign->emailid = rand();
