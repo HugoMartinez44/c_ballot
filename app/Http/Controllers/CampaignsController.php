@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Campaigns;
 use App\Organization;
+use App\Emails;
 
 class CampaignsController extends Controller
 {
@@ -77,8 +78,9 @@ class CampaignsController extends Controller
      */
     public function show($campaignid)
     {
+        $emails = Emails::all()->pluck('adresse_mail');
         $campaign = Campaigns::find($campaignid);
-        return view('pages.campaigns.show')->with('campaign', $campaign);
+        return view('pages.campaigns.show')->with('campaign', $campaign)->with('emails', $emails);
     }
 
     /**
