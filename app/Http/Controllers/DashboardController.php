@@ -40,5 +40,10 @@ class DashboardController extends Controller
         return view('pages.dashboard') -> with ('data',$data);
     }
 
+    public function success()
+    {
+        return view('pages.mailSuccess');
+    }
+
 
 }

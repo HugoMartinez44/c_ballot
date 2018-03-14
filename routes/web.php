@@ -26,13 +26,15 @@ Route::post('/sendmail', function (\Illuminate\Http\Request $request, \Illuminat
     ->to($emails_array[$i])
     ->send(new \App\Mail\MyMail($request->input('email_body')));
   }
-    return redirect()->back();
+    return redirect('/success');
 })->name('sendmail');
 //
 
 Route::get('/', 'PagesController@index');
 
 Auth::routes();
+
+Route::get('/success', 'DashboardController@success');
 
 Route::get('/dashboard', 'DashboardController@index');
 
