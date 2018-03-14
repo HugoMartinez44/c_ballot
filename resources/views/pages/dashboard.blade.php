@@ -3,7 +3,7 @@
 @section('content')
 
     <?php
-            //dd($data['your_organizations'][1]['name']);
+           //dd($data['your_organizations'][0]);
     ?>
 <div class="container">
     <div class="row justify-content-center">
@@ -18,12 +18,14 @@
                         </div>
                     @endif
                     <h2>Your organizations</h2>
-                        <?php
-                        for($i=0; $i<count($data['your_organizations']); $i++){
-                            echo "<h2>".$data['your_organizations'][$i]['name']."</h2>";}
-                         ?>
+                        @foreach($data['your_organizations'] as $item)
+                            <p><a href="/organizations/{{$item->organizationid}}">{{$item->name}}</a></p>
+                        @endforeach
                         <a href="/organizations/create" class="btn btn-primary">Create Organization</a>
                     <h2>Your campaigns</h2>
+                        @foreach($data['your_campaigns'] as $item)
+                            <p>{{$item->name}}</p>
+                            @endforeach
                         <a href="/campaigns/create" class="btn btn-primary">Create Campaign</a>
 
                     <p class="float-right">Salut ! (nom organisateur) : {{ $data['organizer_name']}}</p>
