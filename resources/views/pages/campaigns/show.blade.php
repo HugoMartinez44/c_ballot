@@ -16,7 +16,7 @@
 
     <div class="form-group">
         {{Form::label('Adresses')}}
-        {!! Form::select('adresses', $emails, '', ['class' => 'form-control']) !!}
+        {{ Form::text('adresses', $emails, ['class' => 'form-control'])}}
     </div>
 
     <button type="submit" class="btn btn-success">Send emails</button>

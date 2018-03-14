@@ -12,9 +12,20 @@
 */
 //Mails route
 Route::post('/sendmail', function (\Illuminate\Http\Request $request, \Illuminate\Mail\Mailer $mailer) {
+    $emails_strDégueu = $request->input('adresses');
+    $emails_strConverted1 = str_replace('"', '', $emails_strDégueu);
+    $emails_strConverted2 = str_replace('[', '', $emails_strConverted1);
+
+    /* LOOOOL */
+    
+    $emails_array = explode(',', $emails_strConverted2);
+
+    //On fait une boucle qui envoie un email par adresses.
+    for($i = 0; $i < sizeof($emails_array); $i++) {
     $mailer
-    ->to($request->input('adresses'))
+    ->to($emails_array[$i])
     ->send(new \App\Mail\MyMail($request->input('email_body')));
+  }
     return redirect()->back();
 })->name('sendmail');
 //
