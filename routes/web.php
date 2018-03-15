@@ -27,7 +27,7 @@ Route::post('/sendmail', function (\Illuminate\Http\Request $request, \Illuminat
   $mailer
   ->to($emails_array[$i])
   ->send(new \App\Mail\MyMail($request->input('email_body'), $anonym_url_array[$i]));
-}
+  }
   return redirect('/success');
 })->name('sendmail');
 //
