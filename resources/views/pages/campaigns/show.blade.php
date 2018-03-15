@@ -14,9 +14,16 @@
         {{Form::textarea('email_body', 'email body', ['class' => 'form-control'])}}
     </div> <!-- placeholder : always in second params -->
 
+    <!-- adresses for the campaign -->
     <div class="form-group">
         {{Form::label('Adresses')}}
         {{ Form::text('adresses', $emails, ['class' => 'form-control'])}}
+    </div>
+
+    <!-- anonym urls generated -->
+    <div class="form-group">
+        {{Form::label('Anonym Urls Generated')}}
+        {{ Form::text('anonym_url', $anonym_url, ['class' => 'form-control'])}}
     </div>
 
     <button type="submit" class="btn btn-success">Send emails</button>
