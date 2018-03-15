@@ -1,13 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Campaigns;
 use App\Organization;
 use App\Emails;
 use\App\Vote;
-
 class CampaignsController extends Controller
 {
     /**
@@ -20,7 +17,6 @@ class CampaignsController extends Controller
          $campaigns = Campaigns::orderby('created_at', 'desc')->get();
         return view('pages.campaigns.index')->with('campaigns', $campaigns);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -30,12 +26,9 @@ class CampaignsController extends Controller
     {
         $organizer_id= auth()->user('organizer')->organizerid;
         //$organizations = Organization::pluck('name', 'organizationid');
-
         $organizations = Organization::where('organizerid',$organizer_id) -> get()->pluck('organizationname', 'organizationid');
-
         return view('pages.campaigns.create')->with('organizations', $organizations);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -44,13 +37,11 @@ class CampaignsController extends Controller
      */
     public function store(Request $request) //it takes a request object because we edit from form.
     {
-
         $this->validate($request, [
             'campaignname' => 'required',
             'startdate' => 'required',
             'enddate' => 'required' //rules here
         ]);
-
         //Create campaign
         $campaign = new Campaigns;
         $campaign->campaignname = $request->input('campaignname');
@@ -59,21 +50,14 @@ class CampaignsController extends Controller
         $campaign->organizationid = $request->input('organizationid');
         $campaign->hasBegun = false;
         $campaign->hasEnded = false;
-
         //refers organizerid to his campaign
         $organizer_id= auth()->user('organizer')->organizerid;
-
         //I fucked up this line.
         $campaign->emailid = rand();
-
         //Save the new created campain
         $campaign->save();
-
-
         return redirect('/campaigns')->with('success', 'Campaign created');
     }
-
-
     /**
      * Display the specified resource.
      *
@@ -82,20 +66,18 @@ class CampaignsController extends Controller
      */
     public function show($campaignid)
     {
+        //Getters here
         $emails = Emails::all()->pluck('adresse_mail');
         $campaign = Campaigns::find($campaignid);
-
+        $anonym_url = Vote::all()->pluck('anonymURL');
         //When a campaign is created, a vote table is implicitely created as well.
-
         
         //If vote table hasn't been created let's do it once.
         if(Vote::count('campaignid', $campaignid) == 0)
         {
-
             function createVote($campaignid)
             {
             $anonym_url = "http://localhost:8000/vote/" . (string)rand();
-
             $vote = new Vote;
             $vote->campaignid = $campaignid;
             $vote->choice = 0;
@@ -103,20 +85,16 @@ class CampaignsController extends Controller
             $vote->voted = false;
             $vote->save();
             }
-
             $vote_length = sizeof(Emails::all());
-
             for ($i = 0 ; $i < $vote_length; $i++) {
             createVote($campaignid);
             }
         }
-
         return view('pages.campaigns.show')
         ->with('campaign', $campaign)
-        ->with('emails', $emails);
+        ->with('emails', $emails)
+        ->with('anonym_url', $anonym_url);
     }
-
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -128,7 +106,6 @@ class CampaignsController extends Controller
         $campaign = Campaigns::find($campaignid);
         return view('pages.campaigns.edit')->with('campaign', $campaign);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -143,17 +120,13 @@ class CampaignsController extends Controller
             'startdate' => 'required',
             'enddate' => 'required' //Those are rules here
         ]);
-
         $campaign = Campaigns::find($campaignid);
         $campaign->campainname = $request->input('name');
         $campaign->startdate = $request->input('startdate');
         $campaign->enddate = $request->input('enddate');
         $campaign->save();
-
-
         return redirect('/campaigns')->with('success', 'Campaign updated');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -164,9 +137,7 @@ class CampaignsController extends Controller
     {
         $campaign = Campaigns::find($campaignid);
         $campaign->delete();
-
         return redirect('/campaigns')->with('success', 'Campaigns removed');
     }
-
     //CRUD fonctionnality for my dear client here ;)
 }

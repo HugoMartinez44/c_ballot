@@ -8,14 +8,16 @@ class MyMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $email_body;
+    public $anonym_url;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($email_body)
+    public function __construct($email_body, $anonym_url)
     {
         $this->email_body = $email_body;
+        $this->anonym_url = $anonym_url;
     }
     /**
      * Build the message.
