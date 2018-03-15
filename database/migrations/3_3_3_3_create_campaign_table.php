@@ -20,6 +20,8 @@ class CreateCampaignTable extends Migration
             $table->dateTime('startdate');
             $table->dateTime('enddate');
             $table->integer('emailid');
+            $table->boolean('hasBegun');
+            $table->boolean('hasEnded');
 
             $table->foreign('organizationid')->references('organizationid')->on('organization');
             $table->timestamps();

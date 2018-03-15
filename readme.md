@@ -1,6 +1,8 @@
 
 On accède à la table vote par l'url anonyme et on fait tout le process à la cool. Ouais ouais
 
+-> Pour gérer la campagne : rajouter les booleans : hasBeggan, hasEnded.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:

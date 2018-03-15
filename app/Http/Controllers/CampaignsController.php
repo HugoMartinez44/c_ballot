@@ -56,6 +56,8 @@ class CampaignsController extends Controller
         $campaign->startdate = $request->input('startdate');
         $campaign->enddate = $request->input('enddate');
         $campaign->organizationid = $request->input('organizationid');
+        $campaign->hasBegun = false;
+        $campaign->hasEnded = false;
 
         //refers organizerid to his campaign
         $organizer_id= auth()->user('organizer')->organizerid;
@@ -114,8 +116,6 @@ class CampaignsController extends Controller
         $campaign->name = $request->input('name');
         $campaign->startdate = $request->input('startdate');
         $campaign->enddate = $request->input('enddate');
-        $campaign->organizationid = rand();
-        $campaign->emailid = rand();
         $campaign->save();
 
 
