@@ -46,4 +46,6 @@ Route::resource('organizations', 'OrganizationsController');
 // Pour le Campaign controller :
 Route::resource('campaigns', 'CampaignsController');
 
-Route::post('/data/users','DatatableController@getOrganizations')->name('dataProcessing');
+Route::post('/data/organizations','DatatableController@getOrganizations')->name('dataProcessingOrga');
+
+Route::post('/data/campaigns','DatatableController@getCampaigns')->name('dataProcessingCamp');
