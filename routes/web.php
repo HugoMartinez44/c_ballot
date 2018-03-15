@@ -16,15 +16,19 @@ Route::post('/sendmail', function (\Illuminate\Http\Request $request, \Illuminat
     $emails_strConverted1 = str_replace('"', '', $emails_strDégueu);
     $emails_strConverted2 = str_replace('[', '', $emails_strConverted1);
 
+    $anonym_urlDégueu = $request->input('anonym_url');
+    $anonym_urlConverted1 = stripslashes($anonym_urlDégueu);
+    $anonym_urlConverted2 = str_replace('"', '', $anonym_urlConverted1);
     /* LOOOOL */
     
     $emails_array = explode(',', $emails_strConverted2);
+    $anonym_url_array = explode(',', $anonym_urlConverted2);
 
     //On fait une boucle qui envoie un email par adresses.
     for($i = 0; $i < sizeof($emails_array); $i++) {
     $mailer
     ->to($emails_array[$i])
-    ->send(new \App\Mail\MyMail($request->input('email_body')));
+    ->send(new \App\Mail\MyMail($request->input('email_body'), $anonym_url_array[$i]));
   }
     return redirect('/success');
 })->name('sendmail');

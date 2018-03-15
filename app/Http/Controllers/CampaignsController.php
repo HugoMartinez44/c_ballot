@@ -82,8 +82,10 @@ class CampaignsController extends Controller
      */
     public function show($campaignid)
     {
+        //Getters here
         $emails = Emails::all()->pluck('adresse_mail');
         $campaign = Campaigns::find($campaignid);
+        $anonym_url = Vote::all()->pluck('anonymURL');
 
         //When a campaign is created, a vote table is implicitely created as well.
 
@@ -113,7 +115,8 @@ class CampaignsController extends Controller
 
         return view('pages.campaigns.show')
         ->with('campaign', $campaign)
-        ->with('emails', $emails);
+        ->with('emails', $emails)
+        ->with('anonym_url', $anonym_url);
     }
 
 

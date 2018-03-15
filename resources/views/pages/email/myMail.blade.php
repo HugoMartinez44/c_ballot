@@ -13,7 +13,8 @@
 
 </head>
 <body>
-<h1>You got Mail</h1>
+<h1>You got an Invitation</h1>
 <p>{{ $email_body }}</p>
+<p>To participate, please follow this link : {{ $anonym_url }}</p>
 </body>
 </html>
