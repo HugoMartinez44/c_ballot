@@ -15,7 +15,7 @@ class CreateOrganizerTable extends Migration
     {
         Schema::create('organizer', function (Blueprint $table) {
             $table->increments('organizerid');
-            $table->string('name');
+            $table->string('organizername');
             $table->string('password');
             $table->string('email');
             $table->rememberToken();

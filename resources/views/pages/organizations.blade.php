@@ -4,7 +4,7 @@
     @if(count($organizations) > 0)
         <ul class="list-group">
         @foreach($organizations as $organization)
-            <li class="list-group-item">{{$organization->name}}</li>
+            <li class="list-group-item">{{$organization->organizationname}}</li>
         @endforeach
         </ul>
     @endif

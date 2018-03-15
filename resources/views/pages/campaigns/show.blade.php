@@ -3,7 +3,7 @@
 @section('content')
     <br>
     <a href="/campaigns">Go Back</a>
-    <h1>{{$campaign->name}}</h1>
+    <h1>{{$campaign->campaignname}}</h1>
     <p>Will be started at : {{$campaign->startdate}}</p>
     <p>Will be ended at : {{$campaign->enddate}}</p>
     <div class="col-md-12">

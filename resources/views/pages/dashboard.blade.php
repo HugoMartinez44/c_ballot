@@ -19,12 +19,12 @@
                     @endif
                     <h2>Your organizations</h2>
                         @foreach($data['your_organizations'] as $item)
-                            <p><a href="/organizations/{{$item->organizationid}}">{{$item->name}}</a></p>
+                            <p><a href="/organizations/{{$item->organizationid}}">{{$item->organizationname}}</a></p>
                         @endforeach
                         <a href="/organizations/create" class="btn btn-primary">Create Organization</a>
                     <h2>Your campaigns</h2>
                         @foreach($data['your_campaigns'] as $item)
-                            <p>{{$item->name}}</p>
+                            <p><a href="/campaigns/{{$item->campaignid}}">{{$item->campaignname}}</a></p>
                             @endforeach
                         <a href="/campaigns/create" class="btn btn-primary">Create Campaign</a>
 

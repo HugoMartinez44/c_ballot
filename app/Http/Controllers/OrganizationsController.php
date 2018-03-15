@@ -41,11 +41,11 @@ class OrganizationsController extends Controller
         $organizer = auth()->user('organizer');
 
         $this->validate($request, [
-            'name' => 'required',
+            'organizationname' => 'required',
         ]);
 
         $organization = new Organization;
-        $organization->name = $request->input('name');
+        $organization->organizationname = $request->input('organizationname');
         $organization->organizationid = rand();
         $organization->organizerid = $organizer->organizerid;
         //I fucked up those 2 lines above so let's not save that submit ;)
@@ -89,12 +89,12 @@ class OrganizationsController extends Controller
     public function update(Request $request, $organizationid)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'organizationname' => 'required',
 
         ]);
 
         $organization = Organization::find($organizationid);
-        $organization->name = $request->input('name');
+        $organization->organizationname = $request->input('organizationname');
         $organization->save();
 
 

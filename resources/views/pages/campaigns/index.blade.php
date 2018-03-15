@@ -5,7 +5,7 @@
     @if(count($campaigns) > 0)
         @foreach($campaigns as $campaign)
             <div class="well">
-                <h3><a href="/campaigns/{{$campaign->campaignid}}">{{$campaign->name}}</a></h3>
+                <h3><a href="/campaigns/{{$campaign->campaignid}}">{{$campaign->campaignname}}</a></h3>
             </div>
         @endforeach
     @else

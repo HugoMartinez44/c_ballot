@@ -10,7 +10,7 @@
         <a class="py-2 d-none d-md-inline-block" href="{{ route('login') }}">Login</a>
             @else
         <a class="py-2 d-none d-md-inline-block" href="/dashboard">
-            {{Auth::user()->name}} <span class='caret'></span></a>
+            {{Auth::user()->organizername}} <span class='caret'></span></a>
 
             <!-- continue the log nav here by adding Auth to the Nico's project -->
                     <a class="py-2 d-none d-md-inline-block" href="{{ route('logout') }}"

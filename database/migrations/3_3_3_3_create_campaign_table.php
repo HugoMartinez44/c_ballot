@@ -16,7 +16,7 @@ class CreateCampaignTable extends Migration
         Schema::create('campaign', function (Blueprint $table) {
             $table->increments('campaignid');
             $table->integer('organizationid')->unsigned();
-            $table->string('name');
+            $table->string('campaignname');
             $table->dateTime('startdate');
             $table->dateTime('enddate');
             $table->integer('emailid');

@@ -2,7 +2,7 @@
 
 @section('content')
     <a href="/organizations" class="btn btn-primary">Go Back</a>
-    <h1>{{$organization->name}}</h1>
+    <h1>{{$organization->organizationname}}</h1>
     <hr>
     <a href="/organizations/{{$organization->organizationid}}/edit" class="btn btn-primary">Edit</a>
 

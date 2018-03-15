@@ -5,7 +5,7 @@
     {!! Form::open(['action' => ['OrganizationsController@update', $organization->organizationid], 'method' => 'POST']) !!}
     <div class="form-group">
         {{Form::label('name', 'Name')}}
-        {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Name'])}}
+        {{Form::text('organizationname', '', ['class' => 'form-control', 'placeholder' => 'Name'])}}
     </div>
 
     {{Form::hidden('_method', 'PUT')}}

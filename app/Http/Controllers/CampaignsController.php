@@ -30,7 +30,7 @@ class CampaignsController extends Controller
         $organizer_id= auth()->user('organizer')->organizerid;
         //$organizations = Organization::pluck('name', 'organizationid');
 
-        $organizations = Organization::where('organizerid',$organizer_id) -> get()->pluck('name', 'organizationid');
+        $organizations = Organization::where('organizerid',$organizer_id) -> get()->pluck('organizationname', 'organizationid');
 
         return view('pages.campaigns.create')->with('organizations', $organizations);
     }
@@ -45,14 +45,14 @@ class CampaignsController extends Controller
     {
 
         $this->validate($request, [
-            'name' => 'required',
+            'campaignname' => 'required',
             'startdate' => 'required',
             'enddate' => 'required' //rules here
         ]);
 
         //Create campaign
         $campaign = new Campaigns;
-        $campaign->name = $request->input('name');
+        $campaign->campaignname = $request->input('campaignname');
         $campaign->startdate = $request->input('startdate');
         $campaign->enddate = $request->input('enddate');
         $campaign->organizationid = $request->input('organizationid');
@@ -107,13 +107,13 @@ class CampaignsController extends Controller
     public function update(Request $request, $campaignid) //même logique
     {
         $this->validate($request, [
-            'name' => 'required',
+            'campaignname' => 'required',
             'startdate' => 'required',
             'enddate' => 'required' //Those are rules here
         ]);
 
         $campaign = Campaigns::find($campaignid);
-        $campaign->name = $request->input('name');
+        $campaign->campaignname = $request->input('campaignname');
         $campaign->startdate = $request->input('startdate');
         $campaign->enddate = $request->input('enddate');
         $campaign->save();

@@ -18,7 +18,7 @@ class Organizer extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'organizername', 'email', 'password',
     ];
 
     public function organizations()

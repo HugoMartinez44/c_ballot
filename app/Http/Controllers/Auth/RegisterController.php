@@ -63,7 +63,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return Organizer::create([
-            'name' => $data['name'],
+            'organizername' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
