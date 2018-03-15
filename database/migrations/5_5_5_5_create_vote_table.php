@@ -15,8 +15,8 @@ class CreateVoteTable extends Migration
     {
         Schema::create('vote', function (Blueprint $table) {
             $table->integer('campaignid')->unsigned();
-            $table->increments('choiceid');
-            $table->dateTime('voted');
+            $table->integer('choice');
+            $table->boolean('voted');
             $table->string('anonymURL');
 
             $table->foreign('campaignid')->references('campaignid')->on('campaign');

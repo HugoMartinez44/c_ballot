@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Campaigns;
 use App\Organization;
 use App\Emails;
+use\App\Vote;
 
 class CampaignsController extends Controller
 {
@@ -72,6 +73,7 @@ class CampaignsController extends Controller
         return redirect('/campaigns')->with('success', 'Campaign created');
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -82,8 +84,38 @@ class CampaignsController extends Controller
     {
         $emails = Emails::all()->pluck('adresse_mail');
         $campaign = Campaigns::find($campaignid);
-        return view('pages.campaigns.show')->with('campaign', $campaign)->with('emails', $emails);
+
+        //When a campaign is created, a vote table is implicitely created as well.
+
+        
+        //If vote table hasn't been created let's do it once.
+        if(Vote::count('campaignid', $campaignid) == 0)
+        {
+
+            function createVote($campaignid)
+            {
+            $anonym_url = "http://localhost:8000/vote/" . (string)rand();
+
+            $vote = new Vote;
+            $vote->campaignid = $campaignid;
+            $vote->choice = 0;
+            $vote->anonymURL = $anonym_url;
+            $vote->voted = false;
+            $vote->save();
+            }
+
+            $vote_length = sizeof(Emails::all());
+
+            for ($i = 0 ; $i < $vote_length; $i++) {
+            createVote($campaignid);
+            }
+        }
+
+        return view('pages.campaigns.show')
+        ->with('campaign', $campaign)
+        ->with('emails', $emails);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -107,13 +139,13 @@ class CampaignsController extends Controller
     public function update(Request $request, $campaignid) //même logique
     {
         $this->validate($request, [
-            'campaignname' => 'required',
+            'name' => 'required',
             'startdate' => 'required',
             'enddate' => 'required' //Those are rules here
         ]);
 
         $campaign = Campaigns::find($campaignid);
-        $campaign->campaignname = $request->input('campaignname');
+        $campaign->campainname = $request->input('name');
         $campaign->startdate = $request->input('startdate');
         $campaign->enddate = $request->input('enddate');
         $campaign->save();
