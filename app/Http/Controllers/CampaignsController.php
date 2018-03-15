@@ -83,6 +83,8 @@ class CampaignsController extends Controller
             $vote->choice = 0;
             $vote->anonymURL = $anonym_url;
             $vote->voted = false;
+/////////////////Have to implement that later on front ////////////////////////
+            $vote->content = "Les digis savent-ils compter jusqu'à 5 ?";
             $vote->save();
             }
             $vote_length = sizeof(Emails::all());

@@ -18,6 +18,7 @@ class CreateVoteTable extends Migration
             $table->integer('choice');
             $table->boolean('voted');
             $table->string('anonymURL');
+            $table->string('content');
 
             $table->foreign('campaignid')->references('campaignid')->on('campaign');
             $table->timestamps();

@@ -34,6 +34,8 @@ Route::post('/sendmail', function (\Illuminate\Http\Request $request, \Illuminat
 
 Route::get('/', 'PagesController@index');
 
+Route::get('/vote/{query}', 'VoteController@index');
+
 Auth::routes();
 
 Route::get('/success', 'DashboardController@success');
