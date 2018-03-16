@@ -80,7 +80,7 @@ class CampaignsController extends Controller
             $anonym_url = "http://localhost:8000/vote/" . (string)rand();
             $vote = new Vote;
             $vote->campaignid = $campaignid;
-            $vote->choice = 0;
+            $vote->choice = rand(0, 2);
             $vote->anonymURL = $anonym_url;
             $vote->voted = false;
 /////////////////Have to implement that later on front ////////////////////////
