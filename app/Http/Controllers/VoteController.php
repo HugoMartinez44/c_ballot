@@ -11,12 +11,18 @@ class VoteController extends Controller
     {
         $fullUrl = "http://localhost:8000/vote/" . $query;
         $goodUrl = Vote::where('anonymURL', $fullUrl)->count();
-        dd($goodUrl);
+        
+        $hasvoted = Vote::where('anonymURL', $fullUrl)->value('voted');
+        dd($hasvoted);
 
-        if($goodUrl > 0)
+        if($goodUrl > 0 && $hasvoted == 0)
         {
-            $content = Vote::where('anonymURL', $fullUrl)->content;
-            return view('pages.vote')->with('title', $title);
+            $vote_content = Vote::where('anonymURL', $fullUrl)->content;
+            return view('pages.vote.vote_success')->with('content', $vote_content);
+        }
+        else
+        {
+            return view('pages.vote.vote_error');
         }
     }
 }
