@@ -13,12 +13,12 @@ class VoteController extends Controller
         $goodUrl = Vote::where('anonymURL', $fullUrl)->count();
         
         $hasvoted = Vote::where('anonymURL', $fullUrl)->value('voted');
-        dd($hasvoted);
+        $hasvoted;
 
         if($goodUrl > 0 && $hasvoted == 0)
         {
-            $vote_content = Vote::where('anonymURL', $fullUrl)->content;
-            return view('pages.vote.vote_success')->with('content', $vote_content);
+            $vote_content = Vote::where('anonymURL', $fullUrl)->value('content');
+            return view('pages.vote.vote_success')->with('vote_content', $vote_content);
         }
         else
         {
