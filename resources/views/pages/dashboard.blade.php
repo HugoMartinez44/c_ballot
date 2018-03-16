@@ -24,7 +24,11 @@
                         <a href="/organizations/create" class="btn btn-primary">Create Organization</a>
                     <h2>Your campaigns</h2>
                         @foreach($data['your_campaigns'] as $item)
-                            <p><a href="/campaigns/{{$item->campaignid}}">{{$item->campaignname}}</a></p>
+                    <p><a href="/campaigns/{{$item->campaignid}}">{{$item->campaignname}}</a>
+                    
+                    <a href="/resultats/{{$item->campaignid}}" class="btn btn-primary">Voir résultats</a>
+                    
+                    </p>
                             @endforeach
                         <a href="/campaigns/create" class="btn btn-primary">Create Campaign</a>
 
